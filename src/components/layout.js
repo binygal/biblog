@@ -1,9 +1,33 @@
-import React from "react"
-import { Link } from "gatsby"
+/** @jsx jsx */
+
+import { jsx } from "@emotion/core"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
+const footerLinksStyle = {
+  display: "flex",
+  justifyContent: "center",
+}
+
 const Layout = ({ location, title, children }) => {
+  const data = useStaticQuery(
+    graphql`
+      query LinkedPages {
+        allSitePage(
+          filter: { componentPath: { regex: "/.*/pages/(?!404)(?!index).*/" } }
+        ) {
+          totalCount
+          edges {
+            node {
+              path
+            }
+          }
+        }
+      }
+    `
+  )
+  const sitePages = data.allSitePage.edges.map(edge => edge.node.path)
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
@@ -62,6 +86,13 @@ const Layout = ({ location, title, children }) => {
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <div css={footerLinksStyle}>
+          {sitePages
+            .filter(page => page !== location.pathname)
+            .map(page => (
+              <Link to={page}>{page.replace(/^\/+|\/+$/g, "")}</Link>
+            ))}
+        </div>
       </footer>
     </div>
   )

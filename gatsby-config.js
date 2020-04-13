@@ -1,15 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Binyamin's blog`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Binyamin Galinsky`,
+      summary: `Sometimes acting like Sherlock Holmes with bugs, sometimes acting like Frodo Baggins with projects.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    description: `A technology blog. My own blog - my own thoughts.`,
+    siteUrl: `https://stoic-goodall-bb0c7c.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `binygal`,
     },
+    icons: [`Construction Road Sign by Gan Khoon Lay from the Noun Project`],
   },
   plugins: [
     {
@@ -53,7 +54,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-163339537-1`,
       },
     },
     `gatsby-plugin-feed`,
@@ -76,6 +77,13 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        // Accepts all options defined by `babel-plugin-emotion` plugin.
+      },
+    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
